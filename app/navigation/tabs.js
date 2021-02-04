@@ -8,33 +8,45 @@ import {
 import { createBottomTabNavigator, BottomTabBar } from "@react-navigation/bottom-tabs"
 import Svg, { Path } from 'react-native-svg';
 
-import { Home } from "../screens"
+import { Home } from "../screens";
 
-import { COLORS, icons } from "../constants"
+import { icons, images, SIZES, COLOURS, FONTS } from '../constants'
 
 const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
     return (
-        <Tab.Navigator>
+        <Tab.Navigator
             tabBarOptions={{
                 showLabel: false,
                 style: {
-                    backgroundColor: "transparent"
+                    position: 'absolute',
+                    left: 0,
+                    bottom: 0,
+                    right: 0,
+                    borderTopWidth: 0,
+                    backgroundColor: "transparent",
+                    elevation: 0
                 }
-            }} 
+            }}
+            tabBar={(props) => (
+                <CustomTabBar
+                    props={props}
+                />
+            )}
+        >
             <Tab.Screen>
                 name="Home"
                 component={Home}
                 options={{
                     tabBarIcon: ({focused}) => {
                         <Image 
-                            source={icons.home}
+                            source={require('../assets/icons/home.png')}
                             resizeMode="contain"
                             style= {{
                                 width: 25,
                                 height: 25,
-                                tintColor: focused ? Colors.primary : Colors.secondary
+                                tintColor: focused ? COLOURS.primary : COLOURS.secondary
                             }}
                         />
                     }
@@ -46,12 +58,12 @@ const Tabs = () => {
                 options={{
                     tabBarIcon: ({focused}) => {
                         <Image 
-                            source={icons.statistics}
+                            source={require('../assets/icons/statistics.png')}
                             resizeMode="contain"
                             style= {{
                                 width: 25,
                                 height: 25,
-                                tintColor: focused ? Colors.primary : Colors.secondary
+                                tintColor: focused ? COLOURS.primary : COLOURS.secondary
                             }}
                         />
                     }
@@ -62,12 +74,12 @@ const Tabs = () => {
                 options={{
                     tabBarIcon: ({focused}) => {
                         <Image 
-                            source={icons.calendar}
+                            source={require('../assets/icons/calendar.png')}
                             resizeMode="contain"
                             style= {{
                                 width: 25,
                                 height: 25,
-                                tintColor: focused ? Colors.primary : Colors.secondary
+                                tintColor: focused ? COLOURS.primary : COLOURS.secondary
                             }}
                         />
                     }
@@ -78,12 +90,12 @@ const Tabs = () => {
                 options={{
                     tabBarIcon: ({focused}) => {
                         <Image 
-                            source={icons.user}
+                            source={require('../assets/icons/user.png')}
                             resizeMode="contain"
                             style= {{
                                 width: 25,
                                 height: 25,
-                                tintColor: focused ? Colors.primary : Colors.secondary
+                                tintColor: focused ? COLOURS.primary : COLOURS.secondary
                             }}
                         />
                     }
