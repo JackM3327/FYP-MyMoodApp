@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
+import { SafeAreaView } from "react-native";
 import {
   StyleSheet,
   Text,
@@ -8,8 +9,11 @@ import {
   TextInput,
   Button,
   TouchableOpacity,
+  ScrollView
 } from "react-native";
+// import { Header } from "react-native/Libraries/NewAppScreen";
 import { COLOURS, icons } from '../constants';
+import Tabs from '../navigation/tabs'
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -17,6 +21,7 @@ export default function Login() {
 
   return (
     <View style={styles.container}>
+      
       <Image 
       style={styles.image} 
       source={require("../assets/MyMoodApp.png")  } />
@@ -52,6 +57,12 @@ export default function Login() {
       <TouchableOpacity style={styles.registerBtn}>
         <Text style={styles.loginText}>REGISTER</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity style={styles.skipLogin}
+      onPress={() => Tabs }>
+        <Text>Skip Login</Text>
+      </TouchableOpacity>
+
     </View>
   );
 }
@@ -67,8 +78,8 @@ const styles = StyleSheet.create({
   image: {
     marginTop: 40,
     marginBottom: 40,
-    width: "20%" ,
-    height: "20%"
+    width: 100 ,
+    height: 100,
   },
 
   inputView: {
@@ -111,6 +122,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: 10,
     backgroundColor: COLOURS.secondary,
+  },
+
+  skipLogin: {
+    width: "80%",
+    borderRadius: 25,
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 10,
+    backgroundColor: 'blue',
   },
 
 });

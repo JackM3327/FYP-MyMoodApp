@@ -1,26 +1,29 @@
 import React from 'react';
 import { StyleSheet, Text, Image, View, SafeAreaView, Platform } from 'react-native';
 import { createBottomTabNavigator, BottomTabBar } from "@react-navigation/bottom-tabs"
-import { COLOURS, icons } from '../constants';
+import { COLOURS } from '../constants';
+import { icons } from "../constants/icons"
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SafeAreaProvider} from 'react-native-safe-area-context';
 import { Header } from 'react-native-elements';
+import AddEntry from './AddEntry';
 
-const Home = () => {
+const Home = ({navigation}) => {
+
+const pressHandler = () => {
+    navigation.navigate('AddEntry');
+}
+
     return (
         <SafeAreaView
         style={styles.container}>
 
-            {/* <Header
-            leftComponent={{ icon: 'menu', color: '#fff' }}
-            centerComponent={{ text: 'MY TITLE', style: { color: '#fff' } }}
-            rightComponent={{ icon: 'home', color: '#fff' }}
-            /> */}
-
         <View
         style={styles.newEntryBox}>
-            <TouchableOpacity>
-            <Text style={styles.newEntryText}>+ Add New Entry</Text>
+            <TouchableOpacity 
+            onPress={() => navigation.navigate('AddEntry')}>
+            <Text style={styles.newEntryText}>
+                + Add New Entry</Text>
         </TouchableOpacity>
         </View>
         
@@ -62,7 +65,7 @@ const styles = StyleSheet.create({
     },
 
     newEntryBox: {
-        borderWidth: 2,
+        borderWidth: 1,
         backgroundColor: COLOURS.primary,
         borderRadius: 5,
         width: "90%",
@@ -79,7 +82,7 @@ const styles = StyleSheet.create({
     }, 
     
     outputBox: {
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: COLOURS.black,
     borderRadius: 5,
     width: "90%",

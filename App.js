@@ -1,40 +1,66 @@
 import React from 'react';
-import { StyleSheet, Text, Image, View, SafeAreaView, Platform } from 'react-native';
+import { StyleSheet, Header, Text, Image, Button, View, SafeAreaView, Platform } from 'react-native';
 
 import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from '@react-navigation/native'
-import { Header } from 'react-native-elements';
+import { NavigationContainer } from '@react-navigation/native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
-
-import { AddEntry, Home, Login, Statistics } from './app/screens'
+import { AddEntry, Calendar, Home, Login, Statistics, User } from './app/screens'
 import Tabs from './app/navigation/tabs'
+import { DrawerContent } from './app/screens/DrawerContent';
+import { COLOURS } from './app/constants';
+import homeStack from './app/navigation/homeStack';
+import Navigator from './app/navigation/drawer'
 
 const Stack = createStackNavigator();
 
+const Drawer = createDrawerNavigator();
+
 const App = () => {
+
+    // const initialLoginState = {
+    //     isLoading: true,
+    //     userName: null,
+    //     userToken: null,
+    //   };
+
+    //   const loginReducer = (prevState, action) => {
+    //     switch( action.type ) {
+    //       case 'RETRIEVE_TOKEN': 
+    //         return {
+    //           ...prevState,
+    //           userToken: action.token,
+    //           isLoading: false,
+    //         };
+    //       case 'LOGIN': 
+    //         return {
+    //           ...prevState,
+    //           userName: action.id,
+    //           userToken: action.token,
+    //           isLoading: false,
+    //         };
+    //       case 'LOGOUT': 
+    //         return {
+    //           ...prevState,
+    //           userName: null,
+    //           userToken: null,
+    //           isLoading: false,
+    //         };
+    //       case 'REGISTER': 
+    //         return {
+    //           ...prevState,
+    //           userName: action.id,
+    //           userToken: action.token,
+    //           isLoading: false,
+    //         };
+    //     }
+    //   };
+    
     return (
-        <SafeAreaView style={styles.container}>
         <NavigationContainer>
-
-            {/* <Header
-            leftComponent={{ icon: 'menu', color: '#fff' }}
-            centerComponent={{ text: 'MY TITLE', style: { color: '#fff' } }}
-            rightComponent={{ icon: 'home', color: '#fff' }}
-            /> */}
-
-            <Stack.Navigator
-                screenOptions={{
-                    headerShown: false
-                }}
-                initialRouteName={'Home'}
-            >
-                <Stack.Screen name="Home" component={Home} />
-                <Stack.Screen name="AddEntry" component={AddEntry} />
-                <Stack.Screen name="Login" component={Login} />
-                <Stack.Screen name="Statistics" component={Statistics} />
-            </Stack.Navigator>
+            <Navigator  />
         </NavigationContainer>
-        </SafeAreaView>
     );
 }
 
@@ -42,6 +68,23 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  header: {
+      alignContent: 'center'
+  },
+  drawer: {
+    height: 100,
+    backgroundColor: COLOURS.primary,
+  }
 });
 
 export default App;
+
+
+// const MongoClient = require('mongodb').MongoClient;
+// const uri = "mongodb+srv://mongodb6137mj:ky1cur@cluster0.gzc6i.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+// client.connect(err => {
+//   const collection = client.db("test").collection("devices");
+//   // perform actions on the collection object
+//   client.close();
+// });
